@@ -51,12 +51,15 @@ const tableStyle = theme => ({
     lineHeight: "1.42857143",
     padding: "12px 8px",
     verticalAlign: "middle",
-    fontSize: "0.8125rem"
+    fontSize: "0.8125rem",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "rgb(221, 221, 221)",
+    borderImage: "initial"
   },
   tableResponsive: {
     width: "100%",
     marginTop: theme.spacing(3),
-    overflowX: "auto"
   },
   tableHeadRow: {
     height: "56px",

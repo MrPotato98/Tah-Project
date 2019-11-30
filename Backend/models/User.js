@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const tab = require("./Table");
 
 //create Schema
 
@@ -20,7 +21,8 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  table: [tab.schema]
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

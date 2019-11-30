@@ -14,6 +14,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
+import { textAlign } from "@material-ui/system";
 
 const styles = {
   cardCategoryWhite: {
@@ -51,8 +52,8 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Company (disabled)"
-                    id="company-disabled"
+                    labelText="Email address (disabled)"
+                    id="Email address-disabled"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -63,8 +64,8 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Username"
-                    id="username"
+                    labelText="Phone Number"
+                    id="Phone Number"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -72,8 +73,8 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Email address"
-                    id="email-address"
+                    labelText="Address"
+                    id="Address"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -83,17 +84,26 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="First Name"
-                    id="first-name"
+                    labelText="Full Name"
+                    id="full-name"
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Last Name"
-                    id="last-name"
+                    labelText="Organization"
+                    id="organization"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={2}>
+                  <CustomInput
+                    labelText="Gender"
+                    id="gender"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -101,7 +111,7 @@ export default function UserProfile() {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
                     labelText="City"
                     id="city"
@@ -110,7 +120,7 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
                     labelText="Country"
                     id="country"
@@ -119,17 +129,8 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Postal Code"
-                    id="postal-code"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
               </GridContainer>
-              <GridContainer>
+              {/* <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
                   <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
                   <CustomInput
@@ -144,14 +145,14 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
-              </GridContainer>
+              </GridContainer> */}
             </CardBody>
-            <CardFooter>
+            <CardFooter style={{ flexDirection: "row-reverse" }}>
               <Button color="primary">Update Profile</Button>
             </CardFooter>
           </Card>
         </GridItem>
-        {/* <GridItem xs={12} sm={12} md={4}>
+        <GridItem xs={12} sm={12} md={4}>
           <Card profile>
             <CardAvatar profile>
               <a href="#pablo" onClick={e => e.preventDefault()}>
@@ -162,16 +163,17 @@ export default function UserProfile() {
               <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
               <h4 className={classes.cardTitle}>Alec Thompson</h4>
               <p className={classes.description}>
-                Don{"'"}t be scared of the truth because we need to restart the
-                human foundation in truth And I love you like Kanye loves Kanye
-                I love Rick Owens’ bed design but the back is...
+                Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào
+                việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã
+                được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn
+                từ những năm 1500,
               </p>
-              <Button color="primary" round>
+              {/* <Button color="primary" round>
                 Follow
-              </Button>
+              </Button> */}
             </CardBody>
           </Card>
-        </GridItem> */}
+        </GridItem>
       </GridContainer>
     </div>
   );

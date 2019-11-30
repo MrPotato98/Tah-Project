@@ -21,10 +21,16 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
-import Logout from "../../views/Login/Logout"
+import { logout } from "../../actions/authActions"
+import { connect } from "react-redux";
 const useStyles = makeStyles(styles);
 
-export default function AdminNavbarLinks() {
+// connect(
+//   null,
+//   { logout }
+// )(Logout);
+
+function AdminNavbarLinks() {
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
   const [openProfile, setOpenProfile] = React.useState(null);
@@ -48,6 +54,9 @@ export default function AdminNavbarLinks() {
   const handleCloseProfile = () => {
     setOpenProfile(null);
   };
+  const logout = () => {
+
+  }
 
   return (
     <div>
@@ -173,7 +182,7 @@ export default function AdminNavbarLinks() {
           </Hidden>
         </Button>
         <Poppers
-          onClick={Logout}
+          onClick={''}
           anchorEl={openProfile}
           transition
           disablePortal
@@ -182,7 +191,7 @@ export default function AdminNavbarLinks() {
             " " +
             classes.popperNav
           }
-        > {console.log(Logout)}
+        > {console.log()}
           {/* {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
@@ -212,7 +221,7 @@ export default function AdminNavbarLinks() {
                       onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                      Logout
+                      
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
@@ -224,3 +233,4 @@ export default function AdminNavbarLinks() {
     </div>
   );
 }
+export default connect (null,{logout})( AdminNavbarLinks)

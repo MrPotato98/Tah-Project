@@ -20,7 +20,6 @@ const dashboardRoutes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    // rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
     layout: "/admin"
@@ -28,23 +27,20 @@ const dashboardRoutes = [
   {
     path: "/user",
     name: "User Profile",
-    // rtlName: "ملف تعريفي للمستخدم",
     icon: Person,
     component: UserProfile,
     layout: "/admin"
   },
-  // {
-  //   path: "/table",
-  //   name: "Table List",
-  //   // rtlName: "قائمة الجدول",
-  //   icon: "content_paste",
-  //   component: TableList,
-  //   layout: "/admin"
-  // },
+  {
+    path: "/table",
+    name: "Table List",
+    icon: "content_paste",
+    component: TableList,
+    layout: "/admin"
+  },
   // {
   //   path: "/maps",
   //   name: "Maps",
-  //   // rtlName: "خرائط",
   //   icon: LocationOn,
   //   component: Maps,
   //   layout: "/admin"
@@ -52,7 +48,6 @@ const dashboardRoutes = [
   // {
   //   path: "/notifications",
   //   name: "Notifications",
-  //   // rtlName: "إخطارات",
   //   icon: Notifications,
   //   component: NotificationsPage,
   //   layout: "/admin"
