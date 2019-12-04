@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
@@ -19,7 +19,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-
+import Content from './Content'
+import API from './../../API/api'
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -59,24 +60,16 @@ const styles = {
 const useStyles = makeStyles(styles);
 const useStyless = makeStyles(styless);
 
-export default function TableList() {
+
+
+export default function TableList(props) {
   const classes = useStyles();
   const classess = useStyless();
-
-  const Row = ({ id }) => (
-    <tr>
-      <td>
-        <input></input>
-      </td>
-      <td>
-        <input></input>
-      </td>
-    </tr>
-  );
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
         <Card>
+        
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>THÔNG TIN NHÂN VIÊN</h4>
             <p className={classes.cardCategoryWhite}>Họ và tên: Trần Anh Huy</p>
@@ -127,68 +120,9 @@ export default function TableList() {
                     </TableCell>
                   </TableRow>
                 </TableHead>
-
-                <TableBody>
-                  <TableRow className={classess.tableBodyRow}>
-                    <TableCell className={classess.tableCell}>
-                      Đi làm chuyên cần, đúng giờ
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>20đ</TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-                <TableBody>
-                  <TableRow className={classess.tableBodyRow}>
-                    <TableCell className={classess.tableCell}>
-                      Có mối quan hệ vui vẻ và hòa đồng với nhân dân địa phương
-                      nơi cư trú
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>7đ</TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-                <TableBody>
-                  <TableRow className={classess.tableBodyRow}>
-                    <TableCell className={classess.tableCell}>
-                      Có mối quan hệ vui vẻ và hòa đồng với nhân dân địa phương
-                      nơi cư trú
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>5đ</TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-                <TableBody>
-                  <TableRow className={classess.tableBodyRow}>
-                    <TableCell className={classess.tableCell}>
-                      Không bị cơ quan an ninh hoặc cơ quan Nhà nước có thẩm
-                      quyền gửi thông báo vi phạm công tác giữ gìn an ninh trật
-                      tự, an toàn xã hội, an toàn giao thông tại địa phương về
-                      Trường
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>10đ</TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                    <TableCell className={classess.tableCell}>
-                      <input className={classes.input}></input>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
+                <Content/>
+               
+               
               </Table>
             </div>
             {/* <Table
@@ -197,7 +131,7 @@ export default function TableList() {
               tableData={[]}
             /> */}
             <br />
-            <GridContainer>
+            <GridContainer justify={"flex-end"}>
             <GridItem xs={12} sm={12} md={12} >
               <InputLabel style={{ color: "#AAAAAA" }}>Comment</InputLabel>
               <CustomInput
@@ -212,7 +146,7 @@ export default function TableList() {
                 }}
               />
             </GridItem>
-            <GridItem xs={12} sm={12} md={3}>
+            <GridItem xs={12} sm={12} md={2} >
               {" "}
               <Button color="primary" >Done</Button>
             </GridItem>

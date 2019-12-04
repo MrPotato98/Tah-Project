@@ -19,9 +19,8 @@ export const loadUser = () => (dispath, getState) => {
   dispath({ type: USER_LOADING });
 
   axios
-    .get("/api/auth/user", tokenConfig(getState))
+    .get("/user/info/", tokenConfig(getState))
     .then(res =>
-      
       dispath({
         type: USER_LOADED,
         payload: res.data
@@ -38,7 +37,7 @@ export const register = ({ name, email, password }) => dispath => {
   // Headers
   const config = {
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
     }
   };
 
@@ -65,22 +64,22 @@ export const register = ({ name, email, password }) => dispath => {
 //Login User
 export const login = ({ email, password }) => dispath => {
   // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
+  const headers = {
+    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
   };
 
   // Request body
-  const body = JSON.stringify({ email, password });
+  const body = { email, password };
   axios
-    .post("/api/auth", body, config)
-    .then(res =>
-      dispath({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      })
-    )
+    .post("/user/login", body)
+    .then(res => {
+      if (res.status == 200) {
+        dispath({
+          type: LOGIN_SUCCESS,
+          payload: res.data
+        });
+      }
+    })
     .catch(err => {
       dispath(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
@@ -101,18 +100,18 @@ export const logout = () => {
 //Setup config/headers and token
 export const tokenConfig = getState => {
   // Get token from localstorage
-  const token = getState().auth.token;
+  const token = getState().token;
 
   //Headers
   const config = {
     headers: {
-      "Content-type": "application/json"
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
     }
   };
 
   //if token, add to headers
   if (token) {
-    config.headers["x-auth-token"] = token;
+    config.headers["token"] = token;
   }
   return config;
 };

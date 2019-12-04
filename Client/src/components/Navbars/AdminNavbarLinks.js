@@ -13,7 +13,7 @@ import Divider from "@material-ui/core/Divider";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
 import Notifications from "@material-ui/icons/Notifications";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
 // core components
@@ -21,8 +21,9 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
-import { logout } from "../../actions/authActions"
+import { logout } from "../../actions/authActions";
 import { connect } from "react-redux";
+import { isConstructorDeclaration } from "typescript";
 const useStyles = makeStyles(styles);
 
 // connect(
@@ -32,8 +33,11 @@ const useStyles = makeStyles(styles);
 
 function AdminNavbarLinks() {
   const classes = useStyles();
+
   const [openNotification, setOpenNotification] = React.useState(null);
+
   const [openProfile, setOpenProfile] = React.useState(null);
+
   const handleClickNotification = event => {
     if (openNotification && openNotification.contains(event.target)) {
       setOpenNotification(null);
@@ -41,9 +45,11 @@ function AdminNavbarLinks() {
       setOpenNotification(event.currentTarget);
     }
   };
+
   const handleCloseNotification = () => {
     setOpenNotification(null);
   };
+
   const handleClickProfile = event => {
     if (openProfile && openProfile.contains(event.target)) {
       setOpenProfile(null);
@@ -51,43 +57,13 @@ function AdminNavbarLinks() {
       setOpenProfile(event.currentTarget);
     }
   };
+
   const handleCloseProfile = () => {
     setOpenProfile(null);
   };
-  const logout = () => {
-
-  }
 
   return (
     <div>
-      {/* <div className={classes.searchWrapper}>
-        <CustomInput
-          formControlProps={{
-            className: classes.margin + " " + classes.search
-          }}
-          inputProps={{
-            placeholder: "Search",
-            inputProps: {
-              "aria-label": "Search"
-            }
-          }}
-        />
-        <Button color="white" aria-label="edit" justIcon round>
-          <Search />
-        </Button>
-      </div> */}
-      {/* <Button
-        color={window.innerWidth > 959 ? "transparent" : "white"}
-        justIcon={window.innerWidth > 959}
-        simple={!(window.innerWidth > 959)}
-        aria-label="Dashboard"
-        className={classes.buttonLink}
-      >
-        <Dashboard className={classes.icons} />
-        <Hidden mdUp implementation="css">
-          <p className={classes.linkText}>Dashboard</p>
-        </Hidden>
-      </Button> */}
       <div className={classes.manager}>
         <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}
@@ -182,7 +158,7 @@ function AdminNavbarLinks() {
           </Hidden>
         </Button>
         <Poppers
-          onClick={''}
+          onClick={logout}
           anchorEl={openProfile}
           transition
           disablePortal
@@ -191,46 +167,15 @@ function AdminNavbarLinks() {
             " " +
             classes.popperNav
           }
-        > {console.log()}
-          {/* {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              id="profile-menu-list-grow"
-              style={{
-                transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom"
-              }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleCloseProfile}>
-                  <MenuList role="menu">
-                    <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      Settings
-                    </MenuItem>
-                    <Divider light />
-                    <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      
-                    </MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )} */}
+        >
+          {" "}
+          {console.log()}
         </Poppers>
       </div>
     </div>
   );
 }
-export default connect (null,{logout})( AdminNavbarLinks)
+export default connect(
+  null,
+  { logout }
+)(AdminNavbarLinks);

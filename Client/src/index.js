@@ -27,7 +27,6 @@ import { loadUser } from "./actions/authActions";
 import Admin from "layouts/Admin.js";
 import PrivateRoute from "./PrivateRoute.js";
 
-
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 import loginPage from "views/Login/loginPage";
 
@@ -39,7 +38,7 @@ class Index extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
-  
+
   render() {
     return (
       <div>

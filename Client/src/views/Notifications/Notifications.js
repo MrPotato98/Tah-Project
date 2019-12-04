@@ -123,7 +123,7 @@ export default function Notifications() {
   return (
     <Card>
       <CardHeader color="primary">
-        <h4 className={classes.cardTitleWhite}>Notifications</h4>
+        <h4 className={classes.cardTitleWhite}>Công việc cần làm</h4>
         <p className={classes.cardCategoryWhite}>
           Handcrafted by our friends from{" "}
           <a
@@ -280,66 +280,11 @@ export default function Notifications() {
             </GridContainer>
           </GridItem>
         </GridContainer>
-        <GridContainer justify={"center"}>
+        {/* <GridContainer justify={"center"}>
           <GridItem xs={12} sm={12} md={10} lg={8}>
-            <GridContainer>
-              <GridItem xs={12} sm={12} md={4}>
-                <Button
-                  fullWidth
-                  color="primary"
-                  onClick={() => showNotification("bl")}
-                >
-                  Bottom Left
-                </Button>
-                <Snackbar
-                  place="bl"
-                  color="info"
-                  icon={AddAlert}
-                  message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                  open={bl}
-                  closeNotification={() => setBL(false)}
-                  close
-                />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
-                <Button
-                  fullWidth
-                  color="primary"
-                  onClick={() => showNotification("bc")}
-                >
-                  Bottom Center
-                </Button>
-                <Snackbar
-                  place="bc"
-                  color="info"
-                  icon={AddAlert}
-                  message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                  open={bc}
-                  closeNotification={() => setBC(false)}
-                  close
-                />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
-                <Button
-                  fullWidth
-                  color="primary"
-                  onClick={() => showNotification("br")}
-                >
-                  Bottom Right
-                </Button>
-                <Snackbar
-                  place="br"
-                  color="info"
-                  icon={AddAlert}
-                  message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                  open={br}
-                  closeNotification={() => setBR(false)}
-                  close
-                />
-              </GridItem>
-            </GridContainer>
+            
           </GridItem>
-        </GridContainer>
+        </GridContainer> */}
       </CardBody>
     </Card>
   );

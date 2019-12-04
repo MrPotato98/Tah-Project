@@ -16,6 +16,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+
 import index from "index.css";
 
 class SignInForm extends Component {
@@ -26,21 +28,24 @@ class SignInForm extends Component {
     msg: null,
     submited: false
   };
+
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
+
   componentWillMount() {
     var token = localStorage.getItem("token");
     if (token) {
       this.props.history.push("/");
       window.location.reload();
     } else {
+      window.location.href = "/login";
     }
-    console.log(token);
   }
+
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
@@ -51,7 +56,6 @@ class SignInForm extends Component {
         this.setState({ msg: null });
       }
     }
-    //if authenticated close
   }
 
   onChange = e => {
@@ -66,25 +70,22 @@ class SignInForm extends Component {
       email,
       password
     };
+
     //Attempt to login
     this.props.login(user);
     this.setState({
       submited: true
     });
   };
-  refreshPage() {
-    window.location.reload();
-  }
 
   render() {
-    if (this.state.submited && this.props.isAuthenticated) {
-      window.location.reload();
-    }
     return (
       <div className="FormCenter">
-        <Form onSubmit={this.onSubmit} className="FormFields" onSubmit={this.onSubmit}>
-        
-          
+        <Form
+          onSubmit={this.onSubmit}
+          className="FormFields"
+          onSubmit={this.onSubmit}
+        >
           <FormGroup className="FormField">
             <Input
               className="FormField"
@@ -110,26 +111,25 @@ class SignInForm extends Component {
               required
             ></Input>
             <Label for="password" className="label-name">
-            <span className="content-name">Password</span>
+              <span className="content-name">Password</span>
             </Label>
           </FormGroup>
-        
+
           {this.state.msg ? (
             <Alert color="danger">{this.state.msg}</Alert>
           ) : null}
-           
-          
+
           <Button className="FormField__Button mr-20">Login</Button>
-            <Link to="/" className="FormField__Link">
-              Create an account
-            </Link>
+          <Link to="/" className="FormField__Link">
+            Create an account
+          </Link>
         </Form>
       </div>
     );
   }
 }
 const mapSateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: state.auth,
   error: state.error
   // ...state
 });
