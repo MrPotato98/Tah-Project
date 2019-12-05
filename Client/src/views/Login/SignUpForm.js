@@ -30,14 +30,14 @@ class SignUpForm extends Component {
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
-  componentWillMount() {
-    var token = localStorage.getItem("token");
-    if (token) {
-      this.props.history.push("/");
-    } else {
-    }
-    console.log(token);
-  }
+  // componentWillMount() {
+  //   var token = localStorage.getItem("token");
+  //   if (token) {
+  //     // this.props.history.push("/");
+  //   } else {
+  //   }
+  //   console.log(token);
+  // }
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
@@ -53,9 +53,9 @@ class SignUpForm extends Component {
       if (isAuthenticated) {
         var token = localStorage.getItem("token");
         if (token) {
-          this.props.history.push("/");
+          // this.props.history.push("/");
         } else {
-          console.log(token);
+          // console.log(token);
         }
       }
     }

@@ -32,6 +32,21 @@ export const loadUser = () => (dispath, getState) => {
     });
 };
 
+export const loadDataUser = token => dispath => {
+  axios
+    .get("/user/info/", tokenConfig(token))
+    .then(res =>
+      dispath({
+        type: USER_LOADED,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispath(returnErrors(err.response.data, err.response.status));
+      dispath({ type: AUTH_ERROR });
+    });
+};
+
 // Register User
 export const register = ({ name, email, password }) => dispath => {
   // Headers
@@ -63,30 +78,29 @@ export const register = ({ name, email, password }) => dispath => {
 
 //Login User
 export const login = ({ email, password }) => dispath => {
-  // Headers
-  const headers = {
-    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-  };
-
   // Request body
   const body = { email, password };
   axios
     .post("/user/login", body)
     .then(res => {
-      if (res.status == 200) {
+      if (res.data.result) {
         dispath({
           type: LOGIN_SUCCESS,
           payload: res.data
         });
+      } else {
+        dispath({
+          type: LOGIN_FAIL
+        });
       }
     })
     .catch(err => {
-      dispath(
-        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
-      );
       dispath({
         type: LOGIN_FAIL
       });
+      dispath(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
     });
 };
 

@@ -4,8 +4,12 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import { makeStyles } from "@material-ui/core/styles";
+import { getTables } from "../../actions/authActions";
 import styless from "assets/jss/material-dashboard-react/components/tableStyle.js";
+import { connect } from "react-redux";
+// import Api from './../../API/api'
 const { getBigtable } = require("./../../API/api");
+
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -46,18 +50,33 @@ const useStyles = makeStyles(styles);
 const useStyless = makeStyles(styless);
 
 class Content extends Component {
-  UNSAFE_componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
+  componentWillMount() {
     // const classes = useStyles();
     // const classess = useStyless();
-    getBigtable("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InF1YW5AZ21haWwuY29tIiwiY29uZmVzcyI6InYgcml0aSBsdmkgcnZ6dHJrIiwia2V5IjoieW91ciBuYW1lIChmdWxsKSIsImV4cCI6MTU3NTI5ODgwNzg2NiwiaWF0IjoxNTc1MjU1NjA3fQ.tY1wCVsR8ol3jpJOQ25_A9UXu35jfQ0YyatV2gqhdPo"    );
+    // this.getTables();
+    console.log(this.props.auth.token);
+    getBigtable(this.props.auth.token, (err, dt) => {
+      if (err) {
+      } else {
+        this.setState({ data: dt.data.result.item });
+        // console.log(dt.data.result.item);
+      }
+    });
   }
   getData = () => {};
   render() {
+    // console.log(this.state.data);
     return (
       <TableBody>
-        <TableRow>
-          <TableCell>Đi làm chuyên cần, đúng giờ</TableCell>
-          <TableCell>20đ</TableCell>
+        {this.state.data ? this.state.data.map(item => {
+          return(
+            <TableRow>
+          <TableCell>{item.title}</TableCell>
+          <TableCell>{item.maxPoint}</TableCell>
           <TableCell>
             <input></input>
           </TableCell>
@@ -65,9 +84,19 @@ class Content extends Component {
             <input></input>
           </TableCell>
         </TableRow>
+          )
+        }) : null}
+        
+        
       </TableBody>
     );
   }
 }
 
-export default Content;
+const mapSateToProps = state => ({
+  ...state
+});
+export default connect(
+  mapSateToProps,
+  {}
+)(Content);

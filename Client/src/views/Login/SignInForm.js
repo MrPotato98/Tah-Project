@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/authActions";
+import { login, loadUser } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
@@ -36,16 +36,6 @@ class SignInForm extends Component {
     clearErrors: PropTypes.func.isRequired
   };
 
-  componentWillMount() {
-    var token = localStorage.getItem("token");
-    if (token) {
-      this.props.history.push("/");
-      window.location.reload();
-    } else {
-      window.location.href = "/login";
-    }
-  }
-
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
@@ -55,6 +45,10 @@ class SignInForm extends Component {
       } else {
         this.setState({ msg: null });
       }
+    }
+
+    if (isAuthenticated) {
+      window.location.href = "/admin";
     }
   }
 
@@ -81,11 +75,7 @@ class SignInForm extends Component {
   render() {
     return (
       <div className="FormCenter">
-        <Form
-          onSubmit={this.onSubmit}
-          className="FormFields"
-          onSubmit={this.onSubmit}
-        >
+        <Form onSubmit={this.onSubmit} className="FormFields">
           <FormGroup className="FormField">
             <Input
               className="FormField"
@@ -128,8 +118,9 @@ class SignInForm extends Component {
     );
   }
 }
+
 const mapSateToProps = state => ({
-  isAuthenticated: state.auth,
+  isAuthenticated: state.auth.isAuthenticated,
   error: state.error
   // ...state
 });

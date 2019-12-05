@@ -48,17 +48,15 @@ router
     user.login(req.body.email, req.body.password, (error, result) => {
       if (error || !result) {
         res.status(200).send({
-          result: false
+          result: false,
         });
       } else {
-        // user.updateToken(req.body.email, req.body.password  , result);
         delete result.user.password;
         res.status(200).send({
           result: true,
           token: result.token,
           info: result.user
         });
-        console.log(result);
       }
     });
   })

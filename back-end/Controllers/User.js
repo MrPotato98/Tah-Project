@@ -26,7 +26,6 @@ let isExistEmail = (email) => {
 
   let user = {
     register: async (email, password, name,gender, callback) => {
-      email = email.toLowerCase();
       let isEmailUseable = await isExistEmail(email);
       if (!isEmailUseable) {
         return callback(new Error(ERROR.DUPLICATE), null);
@@ -49,9 +48,9 @@ let isExistEmail = (email) => {
           .catch(err => callback(err, null));
       }
     },
+
     login: async (email, password, callback) => {
       password = crypto.createHash('sha256').update(password).digest('hex');
-      email = email.toLowerCase();
       User.findOne({
         email: email,
         password: password,
@@ -72,6 +71,7 @@ let isExistEmail = (email) => {
         }
       })
     },
+
     getBigtable:(_idUser, callback)=>{
       Bigtable.findOne ({_idUser},(err, result)=>{
         if (err)
@@ -83,6 +83,7 @@ let isExistEmail = (email) => {
         }
       })
     },
+
     createKeyRePass: async(email,callback)=>{
       User.findOne({email:email},(err, result)=>{
         if (err)
@@ -91,8 +92,6 @@ let isExistEmail = (email) => {
         }
         else
         {
-
-
           if (result==null)
           {
             callback(true, null)
@@ -147,11 +146,11 @@ let isExistEmail = (email) => {
             result.save()
             .then(res => callback(null, res))
             .catch(err => callback(err, null));
-
           }
         }
       })
     },
+
     changePassword:(email, key, pass, callback)=>{
       User.findOne({email:email,key_repass:key},(err,result)=>{
         if (err)
@@ -177,12 +176,13 @@ let isExistEmail = (email) => {
 
       })
     },
+    
     logout: async (token, callback) => {
       User.findOneAndUpdate({
         "token": token
       }, { "token": "" }, callback);
-    }
-    ,
+    },
+
     updateInfo: (user, callback) => {
       user.password = crypto.createHash('sha256').update(user.password).digest('hex');
       User.findById(user._id, (err, oldUser) => {
@@ -194,6 +194,16 @@ let isExistEmail = (email) => {
           .catch(err => callback(err, null));
       })
     },
+
+    // updateToken: (_id, token, callback) => {
+    //     User.findById(_id, (err, result) => {
+    //         result.token = token;
+    //         result.save()
+    //         .then(res => callback(null, res))
+    //         .catch(err => callback(err, null));
+    //     })
+    // },
+
     deleteAccount: (token, callback) => {
       User.findOne({
         "token": token

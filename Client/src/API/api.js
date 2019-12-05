@@ -5,17 +5,16 @@ import qs from "querystring";
 //   a: "aaa"
 // });
 
-export const getBigtable = function(token) {
+export const getBigtable = function(token, callback) {
   axios
     .get(`/user/gettable`, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-        token:
-          token
+        token
       }
     })
     .then(res => {
-      console.log(res);
+      callback(false, res);
     })
     .catch(error => console.log(error));
 };
