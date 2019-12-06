@@ -91,6 +91,8 @@ mongoose.connect(
   }
 );
 
+mongoose.set('useFindAndModify', false);
+
 server.listen(process.env.PORT || 2409,(err, success)=>{
     if (err)
     {

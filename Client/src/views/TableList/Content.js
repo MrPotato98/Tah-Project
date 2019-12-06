@@ -7,7 +7,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getTables } from "../../actions/authActions";
 import styless from "assets/jss/material-dashboard-react/components/tableStyle.js";
 import { connect } from "react-redux";
-// import Api from './../../API/api'
+import Api from './../../API/api'
+import { CustomInput } from "components/CustomInput/CustomInput.js";
+import Button from "components/CustomButtons/Button.js";
+import Axios from "axios";
 const { getBigtable } = require("./../../API/api");
 
 const styles = {
@@ -52,18 +55,39 @@ const useStyless = makeStyles(styless);
 class Content extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+
+    this.state = {
+      data: [],
+      point: 0,
+      type: "",
+      note: ""
+    };
   }
+
+  onSubmit = e => {
+    e.preventDefault();
+    let {type, point, note} = this.state;
+    Axios.post('/itemtable/update-item', {
+      "type": type,
+      "point": point,
+      "note": note
+    }, (err, res) => {
+      console.log(err)
+    })
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
   componentWillMount() {
     // const classes = useStyles();
     // const classess = useStyless();
     // this.getTables();
-    console.log(this.props.auth.token);
     getBigtable(this.props.auth.token, (err, dt) => {
       if (err) {
       } else {
         this.setState({ data: dt.data.result.item });
-        // console.log(dt.data.result.item);
       }
     });
   }
@@ -74,20 +98,21 @@ class Content extends Component {
       <TableBody>
         {this.state.data ? this.state.data.map(item => {
           return(
-            <TableRow>
+          <TableRow>
           <TableCell>{item.title}</TableCell>
+          {/* <TableCell >{item.}</TableCell> */}
           <TableCell>{item.maxPoint}</TableCell>
           <TableCell>
-            <input></input>
+            <input type="number" name="point" id="point" onChange = {this.onChange}/>
           </TableCell>
           <TableCell>
-            <input></input>
+            <input type="text" name="note" id="note" onChange = {this.onChange}/>
           </TableCell>
         </TableRow>
           )
         }) : null}
-        
-        
+        <textarea id = 'type' name = 'type' onChange= {this.onChange}/>
+        <button color="primary" onClick={this.onSubmit}>Done</button>
       </TableBody>
     );
   }
@@ -96,6 +121,7 @@ class Content extends Component {
 const mapSateToProps = state => ({
   ...state
 });
+
 export default connect(
   mapSateToProps,
   {}

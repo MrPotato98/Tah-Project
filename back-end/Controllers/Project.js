@@ -4,8 +4,6 @@ const item= require('./../Model/Item')
 const userModel = require ('./../Model/User')
 const projectPartnerModel = require ('./../Model/Project_partner')
 
- 
-
 let project={
   //PROJECT
   getListProject:(idUser,callback)=>{

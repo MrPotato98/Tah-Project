@@ -60,8 +60,6 @@ const styles = {
 const useStyles = makeStyles(styles);
 const useStyless = makeStyles(styless);
 
-
-
 export default function TableList(props) {
   const classes = useStyles();
   const classess = useStyless();
@@ -69,7 +67,6 @@ export default function TableList(props) {
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
         <Card>
-        
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>THÔNG TIN NHÂN VIÊN</h4>
             <p className={classes.cardCategoryWhite}>Họ và tên: Trần Anh Huy</p>
@@ -121,8 +118,6 @@ export default function TableList(props) {
                   </TableRow>
                 </TableHead>
                 <Content/>
-               
-               
               </Table>
             </div>
             {/* <Table
@@ -148,7 +143,7 @@ export default function TableList(props) {
             </GridItem>
             <GridItem xs={12} sm={12} md={2} >
               {" "}
-              <Button color="primary" >Done</Button>
+              <Button color="primary">Done</Button>
             </GridItem>
             </GridContainer>
           </CardBody>

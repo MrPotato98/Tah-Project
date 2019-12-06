@@ -19,4 +19,11 @@ router
     })
 })
 
+.post('/update-item', (req, res) => {
+    const {point, note, type} = req.body;
+    ItemTable.updateItem(type, point, note, (err, result) => {
+        console.log(err);
+    })
+})
+
 module.exports=router;
