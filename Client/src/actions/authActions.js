@@ -19,7 +19,7 @@ export const loadUser = () => (dispath, getState) => {
   dispath({ type: USER_LOADING });
 
   axios
-    .get("/user/info/", tokenConfig(getState))
+    .get("/user/info", tokenConfig(getState))
     .then(res =>
       dispath({
         type: USER_LOADED,
@@ -34,7 +34,7 @@ export const loadUser = () => (dispath, getState) => {
 
 export const loadDataUser = token => dispath => {
   axios
-    .get("/user/info/", tokenConfig(token))
+    .get("/user/info", tokenConfig(token))
     .then(res =>
       dispath({
         type: USER_LOADED,
@@ -59,7 +59,7 @@ export const register = ({ name, email, password }) => dispath => {
   // Request body
   const body = JSON.stringify({ name, email, password });
   axios
-    .post("/api/users", body, config)
+    .post("/user/register", body, config)
     .then(res =>
       dispath({
         type: REGISTER_SUCCESS,
@@ -88,19 +88,22 @@ export const login = ({ email, password }) => dispath => {
           type: LOGIN_SUCCESS,
           payload: res.data
         });
-      } else {
+      }
+       else {
         dispath({
-          type: LOGIN_FAIL
+          type: LOGIN_FAIL,
         });
       }
     })
     .catch(err => {
+      if(err.data.result == false){
       dispath({
         type: LOGIN_FAIL
       });
       dispath(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
       );
+      }
     });
 };
 
@@ -119,13 +122,14 @@ export const tokenConfig = getState => {
   //Headers
   const config = {
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      "Content-Type": "application/x-www-form-urlencoded"
     }
   };
 
   //if token, add to headers
   if (token) {
     config.headers["token"] = token;
+    console.log(token);
   }
   return config;
 };

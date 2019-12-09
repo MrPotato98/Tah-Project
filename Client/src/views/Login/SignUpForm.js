@@ -1,16 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  NavLink,
-  Alert
-} from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
@@ -97,7 +86,7 @@ class SignUpForm extends Component {
               required
             ></Input>
             <Label for="name" className="label-name">
-            <span className="content-name">Name</span>
+              <span className="content-name">Name</span>
             </Label>
           </FormGroup>
           <FormGroup className="FormField">
@@ -111,7 +100,7 @@ class SignUpForm extends Component {
               required
             ></Input>
             <Label for="email" className="label-name">
-            <span className="content-name">Email</span>
+              <span className="content-name">Email</span>
             </Label>
           </FormGroup>
           <FormGroup className="FormField">
@@ -120,13 +109,12 @@ class SignUpForm extends Component {
               type="password"
               name="password"
               id="password"
-
               onChange={this.onChange}
               autoComplete="off"
               required
             ></Input>
             <Label for="password" className="label-name">
-            <span className="content-name"> Password</span>
+              <span className="content-name"> Password</span>
             </Label>
           </FormGroup>
           <Button className="FormField__Button mr-20">Register</Button>

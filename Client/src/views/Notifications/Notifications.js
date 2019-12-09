@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
+import ArrowDown from "@material-ui/icons/ArrowDownward";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -15,6 +16,14 @@ import Snackbar from "components/Snackbar/Snackbar.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+
+import Table from "@material-ui/core/Table";
+import TableRow from "@material-ui/core/TableRow";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import { Icon } from "@material-ui/core";
 
 const styles = {
   cardCategoryWhite: {
@@ -56,6 +65,7 @@ export default function Notifications() {
   const [bl, setBL] = React.useState(false);
   const [bc, setBC] = React.useState(false);
   const [br, setBR] = React.useState(false);
+
   React.useEffect(() => {
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -124,124 +134,20 @@ export default function Notifications() {
     <Card>
       <CardHeader color="primary">
         <h4 className={classes.cardTitleWhite}>Công việc cần làm</h4>
-        <p className={classes.cardCategoryWhite}>
-          Handcrafted by our friends from{" "}
-          <a
-            target="_blank"
-            href="https://material-ui-next.com/?ref=creativetime"
-          >
-            Material UI
-          </a>{" "}
-          and styled by{" "}
-          <a
-            target="_blank"
-            href="https://www.creative-tim.com/?ref=mdr-notifications-page"
-          >
-            Creative Tim
-          </a>
-          . Please checkout the{" "}
-          <a href="#pablo" target="_blank">
-            full documentation
-          </a>
-          .
-        </p>
       </CardHeader>
       <CardBody>
+        <GridContainer justify="center">
+          <GridItem
+            xs={12}
+            sm={12}
+            md={6}
+            style={{ textAlign: "center" }}
+          ></GridItem>
+        </GridContainer>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={6}>
-            <h5>Notifications Style</h5>
-            <br />
-            <SnackbarContent message={"This is a plain notification"} />
-            <SnackbarContent
-              message={"This is a notification with close button."}
-              close
-            />
-            <SnackbarContent
-              message={"This is a notification with close button and icon."}
-              close
-              icon={AddAlert}
-            />
-            <SnackbarContent
-              message={
-                "This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style."
-              }
-              close
-              icon={AddAlert}
-            />
-          </GridItem>
-          <GridItem xs={12} sm={12} md={6}>
-            <h5>Notifications States</h5>
-            <br />
-            <SnackbarContent
-              message={
-                'INFO - This is a regular notification made with color="info"'
-              }
-              close
-              color="info"
-            />
-            <SnackbarContent
-              message={
-                'SUCCESS - This is a regular notification made with color="success"'
-              }
-              close
-              color="success"
-            />
-            <SnackbarContent
-              message={
-                'WARNING - This is a regular notification made with color="warning"'
-              }
-              close
-              color="warning"
-            />
-            <SnackbarContent
-              message={
-                'DANGER - This is a regular notification made with color="danger"'
-              }
-              close
-              color="danger"
-            />
-            <SnackbarContent
-              message={
-                'PRIMARY - This is a regular notification made with color="primary"'
-              }
-              close
-              color="primary"
-            />
-          </GridItem>
-        </GridContainer>
-        <br />
-        <br />
-        <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={6} style={{ textAlign: "center" }}>
-            <h5>
-              Notifications Places
-              <br />
-              <small>Click to view notifications</small>
-            </h5>
-          </GridItem>
-        </GridContainer>
-        <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={10} lg={8}>
-            <GridContainer>
-              <GridItem xs={12} sm={12} md={4}>
-                <Button
-                  fullWidth
-                  color="primary"
-                  onClick={() => showNotification("tl")}
-                >
-                  Top Left
-                </Button>
-                <Snackbar
-                  place="tl"
-                  color="info"
-                  icon={AddAlert}
-                  message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                  open={tl}
-                  closeNotification={() => setTL(false)}
-                  close
-                />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
+          <GridItem xs={12} sm={12} md={10} lg={12}>
+            <GridContainer justify="center">
+              {/* <GridItem xs={12} sm={12} md={4}>
                 <Button
                   fullWidth
                   color="primary"
@@ -258,24 +164,57 @@ export default function Notifications() {
                   closeNotification={() => setTC(false)}
                   close
                 />
-              </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
-                <Button
-                  fullWidth
-                  color="primary"
-                  onClick={() => showNotification("tr")}
-                >
-                  Top Right
-                </Button>
-                <Snackbar
-                  place="tr"
-                  color="info"
-                  icon={AddAlert}
-                  message="Welcome to MATERIAL DASHBOARD React - a beautiful freebie for every web developer."
-                  open={tr}
-                  closeNotification={() => setTR(false)}
-                  close
-                />
+              </GridItem> */}
+              <GridItem xs={12} sm={12} md={12} lg={11}>
+                <Card>
+                  <Table>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <a href="#">
+                            {" "}
+                            Sign contract for "What are conference organizers
+                            afraid of?"
+                          </a>
+                          <Tooltip
+                            id="tooltip-top-start"
+                            title="Download File"
+                            placement="top"
+                            classes={{ tooltip: classes.tooltip }}
+                          >
+                            <IconButton
+                              aria-label="Close"
+                              className={classes.tableActionButton}
+                            >
+                              <ArrowDown />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <a href="#">
+                            Lines From Great Russian Literature? Or E-mails From
+                            My Boss?
+                          </a>
+                          <Tooltip
+                            id="tooltip-top-start"
+                            title="Download File"
+                            placement="top"
+                            classes={{ tooltip: classes.tooltip }}
+                          >
+                            <IconButton
+                              aria-label="Close"
+                              className={classes.tableActionButton}
+                            >
+                              <ArrowDown />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </Card>
               </GridItem>
             </GridContainer>
           </GridItem>

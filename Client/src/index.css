@@ -9,7 +9,18 @@ body {
   margin: 0;
   padding: 0;
 }
-
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+  text-decoration: none;
+}
 .mr-20 {
   margin-right: 20px !important;
 }
@@ -23,7 +34,7 @@ body {
 
 .App__Aside {
   width: 50%;
-  background-color: #66dac7;  
+  background-color: #66dac7;
 }
 
 .App__Form {
@@ -148,60 +159,11 @@ body {
   transform: translateY(-150%);
   font-size: 14px;
   color: #199087;
-
 }
 .FormField input:focus + .label-name::after,
-.FormField input:valid + .label-name::after{
+.FormField input:valid + .label-name::after {
   transform: translateX(0%);
 }
-
-/* }
-.FormField__Input input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  padding-top: 20px;
-  color: white;
-  border-bottom: 1px solid #445366;
-}
-
-.FormField__Label label {
-  font-size: 0.9em;
-  position: absolute;
-  bottom: 0px;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  border-bottom: 1px solid #445366;
-}
-.FormField__Label label::after {
-  content: "";
-  bottom: -1px;
-  position: absolute;
-  bottom: 0px;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  border-bottom: 2px solid #5ed0c0;
-  transform: translateX(-100px);
-}
-
-.content-name {
-  position: absolute;
-  bottom: 5px;
-  left: 0px;
-  transition: all 0.3s ease;
-}
-
-.FormField .FormField__Input input:focus + .FormField__Label .content-name,
-.FormField__Input input:valid + .FormField__Label .content-name {
-  transform: translateY(-150%);
-  font-size: 14px;
-  color: #199087;
-} */
-
 
 .FormField__Button {
   background-color: #52c4b9;

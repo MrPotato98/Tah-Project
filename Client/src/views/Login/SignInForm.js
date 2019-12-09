@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import {
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
+
   Form,
   FormGroup,
   Input,
   Label,
-  NavLink,
+  
   Alert
 } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -16,9 +14,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login, loadUser } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+// import { Router, Route, Switch, Redirect } from "react-router-dom";
 
-import index from "index.css";
+import "./../../index.css";
 
 class SignInForm extends Component {
   state = {

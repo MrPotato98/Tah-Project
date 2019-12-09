@@ -14,7 +14,6 @@ const PostSchema = mongoose.Schema({
   City: String,
   Country: String,
   Oganization: String,
-  Token: String
 });
 
 module.exports = mongoose.model("User", PostSchema);

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { login } from "../../actions/authActions";
-import { clearErrors } from "../../actions/errorActions";
+// import { connect } from "react-redux";
+// import PropTypes from "prop-types";
+// import { login } from "../../actions/authActions";
+// import { clearErrors } from "../../actions/errorActions";
 
 class loginPage extends Component {
   componentDidMount() {

@@ -126,7 +126,7 @@ export default function TableList(props) {
               tableData={[]}
             /> */}
             <br />
-            <GridContainer justify={"flex-end"}>
+            {/* <GridContainer justify={"flex-end"}>
             <GridItem xs={12} sm={12} md={12} >
               <InputLabel style={{ color: "#AAAAAA" }}>Comment</InputLabel>
               <CustomInput
@@ -145,7 +145,7 @@ export default function TableList(props) {
               {" "}
               <Button color="primary">Done</Button>
             </GridItem>
-            </GridContainer>
+            </GridContainer> */}
           </CardBody>
         </Card>
       </GridItem>

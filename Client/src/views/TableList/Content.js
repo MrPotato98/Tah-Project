@@ -1,16 +1,20 @@
 import React, { Component } from "react";
-import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import { makeStyles } from "@material-ui/core/styles";
-import { getTables } from "../../actions/authActions";
 import styless from "assets/jss/material-dashboard-react/components/tableStyle.js";
 import { connect } from "react-redux";
-import Api from './../../API/api'
-import { CustomInput } from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import Axios from "axios";
+
+import FormControl from "@material-ui/core/FormControl";
+
+import TextField from "@material-ui/core/TextField";
+
+import GridItem from "components/Grid/GridItem.js";
+import GridContainer from "components/Grid/GridContainer.js";
+
 const { getBigtable } = require("./../../API/api");
 
 const styles = {
@@ -66,19 +70,23 @@ class Content extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    let {type, point, note} = this.state;
-    Axios.post('/itemtable/update-item', {
-      "type": type,
-      "point": point,
-      "note": note
-    }, (err, res) => {
-      console.log(err)
-    })
-  }
+    let { type, point, note } = this.state;
+    Axios.post(
+      "/itemtable/update-item",
+      {
+        type: type,
+        point: point,
+        note: note
+      },
+      (err, res) => {
+        console.log(err);
+      }
+    );
+  };
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   componentWillMount() {
     // const classes = useStyles();
@@ -95,24 +103,59 @@ class Content extends Component {
   render() {
     // console.log(this.state.data);
     return (
+      // <GridContainer></GridContainer>
       <TableBody>
-        {this.state.data ? this.state.data.map(item => {
-          return(
-          <TableRow>
-          <TableCell>{item.title}</TableCell>
-          {/* <TableCell >{item.}</TableCell> */}
-          <TableCell>{item.maxPoint}</TableCell>
-          <TableCell>
-            <input type="number" name="point" id="point" onChange = {this.onChange}/>
-          </TableCell>
-          <TableCell>
-            <input type="text" name="note" id="note" onChange = {this.onChange}/>
-          </TableCell>
-        </TableRow>
-          )
-        }) : null}
-        <textarea id = 'type' name = 'type' onChange= {this.onChange}/>
-        <button color="primary" onClick={this.onSubmit}>Done</button>
+        {this.state.data
+          ? this.state.data.map(item => {
+              return (
+                <TableRow>
+                  <TableCell>{item.title}</TableCell>
+                  {/* <TableCell >{item.}</TableCell> */}
+                  <TableCell>{item.maxPoint}</TableCell>
+                  <TableCell>
+                    <TextField
+                      type="number"
+                      name="point"
+                      id="point"
+                      onChange={this.onChange}
+                      variant="outlined"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TextField
+                      type="text"
+                      name="note"
+                      id="note"
+                      onChange={this.onChange}
+                      variant="outlined"
+                    />
+                  </TableCell>
+                </TableRow>
+              );
+            })
+          : null}
+        <GridContainer justify={"flex-start"}>
+        
+          <GridItem xs={12} sm={12} md={12}>
+            <FormControl style={{ display: "flex", flexWrap: "wrap" }}>
+              {/* <InputLabel style={{ color: "#AAAAAA" }}>Comment</InputLabel> */}
+              <TextField
+                id="type"
+                name="type"
+                onChange={this.onChange}
+                label="Nhận xét"
+                fullWidth={true}
+                style={{ margin: 8 }}
+                margin="normal"
+              />
+            </FormControl>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={2}>
+            <Button color="primary" onClick={this.onSubmit}>
+              Done
+            </Button>
+          </GridItem>
+        </GridContainer>
       </TableBody>
     );
   }

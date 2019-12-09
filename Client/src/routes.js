@@ -1,20 +1,17 @@
-
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
-import BubbleChart from "@material-ui/icons/BubbleChart";
-import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
-import Unarchive from "@material-ui/icons/Unarchive";
-import Language from "@material-ui/icons/Language";
+import history from '@material-ui/icons/History'
+
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
-import Maps from "views/Maps/Maps.js";
+import History from 'views/History/History'
+// import Maps from "views/Maps/Maps.js";
 import NotificationsPage from "views/Notifications/Notifications.js";
+import AddModal from "views/Dashboard/AddModal";
 // core components/views for RTL layout
-
 
 const dashboardRoutes = [
   {
@@ -38,20 +35,20 @@ const dashboardRoutes = [
     component: TableList,
     layout: "/admin"
   },
-  // {
-  //   path: "/maps",
-  //   name: "Maps",
-  //   icon: LocationOn,
-  //   component: Maps,
-  //   layout: "/admin"
-  // },
+  {
+    path: "/History",
+    name: "History",
+    icon: history,
+    component: History,
+    layout: "/admin"
+  },
   {
     path: "/notifications",
     name: "Notifications",
     icon: Notifications,
     component: NotificationsPage,
     layout: "/admin"
-  }
+  },
   
 ];
 

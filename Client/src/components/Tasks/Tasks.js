@@ -14,6 +14,8 @@ import TableCell from "@material-ui/core/TableCell";
 import Edit from "@material-ui/icons/Edit";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
+import Attachfiles from "@material-ui/icons/AttachFile";
+
 // core components
 import styles from "assets/jss/material-dashboard-react/components/tasksStyle.js";
 
@@ -56,6 +58,7 @@ export default function Tasks(props) {
             </TableCell>
             <TableCell className={tableCellClasses}>{tasks[value]}</TableCell>
             <TableCell className={classes.tableActions}>
+            
               <Tooltip
                 id="tooltip-top"
                 title="Edit Task"
@@ -75,11 +78,24 @@ export default function Tasks(props) {
               </Tooltip>
               <Tooltip
                 id="tooltip-top-start"
+                title="Import file"
+                placement="top"
+                classes={{ tooltip: classes.tooltip }}
+              ><IconButton
+                  aria-label="AttachFile"
+                  className={classes.tableActionButton}
+                >
+                  <Attachfiles
+                    color={'primary'}
+                  />
+                </IconButton>
+              </Tooltip>
+              <Tooltip
+                id="tooltip-top-start"
                 title="Remove"
                 placement="top"
                 classes={{ tooltip: classes.tooltip }}
-              >
-                <IconButton
+              ><IconButton
                   aria-label="Close"
                   className={classes.tableActionButton}
                 >
