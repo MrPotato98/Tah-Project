@@ -162,7 +162,7 @@ class Dashboard extends Component {
               position="center-bottom"
               slot="fixed"
             >
-              <AddNoti />
+              <AddModal />
             </Fab>
             <p>Tạo bảng đánh giá</p>
           </GridItem>

@@ -102,7 +102,7 @@ class AddNoti extends Component {
                   />
                 </IconButton>
               </Tooltip>
-              //----------------testing title text----------------
+              {/* ----------------testing title text---------------- */}
               {this.state.link ? this.click() : null}
             </TableRow>
           </GridContainer>

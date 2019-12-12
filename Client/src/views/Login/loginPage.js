@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
+
 // import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 // import { login } from "../../actions/authActions";
@@ -17,8 +18,7 @@ class loginPage extends Component {
     return (
       <Router basename="/react-auth-ui/">
         <div className="App">
-          <div className="App__Aside">
-          </div>
+          <div className="App__Aside"></div>
           <div className="App__Form">
             <div className="PageSwitcher">
               <NavLink
