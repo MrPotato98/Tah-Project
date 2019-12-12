@@ -25,15 +25,32 @@ import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
 import GridContainer from "components/Grid/GridContainer";
 
-class AddModal extends Component {
+class AddNoti extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      link: false,
+      text: ""
     };
 
     this.toggle = this.toggle.bind(this);
   }
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  object = {
+    link: "/admin/table"
+  };
+
+  click = () => {
+    return (
+      <div>
+        {this.state.text}
+        <a href={this.object.link}>Click me</a>
+      </div>
+    );
+  };
 
   toggle() {
     this.setState({
@@ -48,46 +65,48 @@ class AddModal extends Component {
   table = () => {
     return (
       <Table>
-        <GridContainer justify="flex-start">
-          <TableHead>
-            <TableRow>
-              <TableCell>Title(tên nôi dung)</TableCell>
-              <TableCell>Điểm tối đa</TableCell>
-            </TableRow>
-          </TableHead>
+        <TableHead>
+          <TableRow>
+            <TableCell>Title(tên nội dung)</TableCell>
+          </TableRow>
+        </TableHead>
 
-          <TableBody>
+        <TableBody>
+          <TableRow>
+            <TextField
+              id="text"
+              name="text"
+              onChange={this.onChange}
+              label="Title"
+              margin="normal"
+              fullWidth
+            />
+          </TableRow>
+          <GridContainer justify="center">
             <TableRow>
-              <TableCell>
-                <TextField
-                  id="type"
-                  name="type"
-                  onChange={this.onChange}
-                  label="Title"
-                  margin="normal"
-                />
-              </TableCell>
-              <TableCell>
-                <TextField
-                  id="type"
-                  name="type"
-                  onChange={this.onChange}
-                  label="Điểm tối đa"
-                  margin="normal"
-                />
-              </TableCell>
+              Nếu muốn mọi người đánh giá thì hãy click vào đây nhé!
               <Tooltip
                 id="tooltip-top-start"
                 title="Add new item"
                 placement="top"
               >
                 <IconButton aria-label="Add">
-                  <AddIcon color={"default"} />
+                  <AddIcon
+                    color={"default"}
+                    onClick={() => {
+                      this.setState({
+                        text: this.state.text,
+                        link: !this.state.link
+                      });
+                    }}
+                  />
                 </IconButton>
               </Tooltip>
+              //----------------testing title text----------------
+              {this.state.link ? this.click() : null}
             </TableRow>
-          </TableBody>
-        </GridContainer>
+          </GridContainer>
+        </TableBody>
       </Table>
     );
   };
@@ -117,12 +136,12 @@ class AddModal extends Component {
           className={this.props.className}
         >
           <ModalHeader toggle={this.toggle}>
-            Tạo bảng đánh giá nhân viên
+            Tạo thông báo việc cần làm
           </ModalHeader>
           <ModalBody>{this.table()}</ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
-              Tạo bảng
+              Tạo công việc
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel
@@ -139,4 +158,4 @@ const mapSateToProps = state => ({
 export default connect(
   mapSateToProps,
   {}
-)(AddModal);
+)(AddNoti);

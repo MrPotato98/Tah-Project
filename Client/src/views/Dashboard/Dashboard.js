@@ -5,7 +5,7 @@ import ChartistGraph from "react-chartist";
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -36,7 +36,7 @@ import {
   completedTasksChart
 } from "variables/charts.js";
 import AddModal from "./AddModal";
-
+import AddNoti from "./AddNoti";
 // import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 // import { style } from "@material-ui/system";
 
@@ -71,9 +71,7 @@ const classes = {
   }
 };
 
-
 class Dashboard extends Component {
-  
   componentWillMount() {
     console.log(this.props.auth);
   }
@@ -150,20 +148,25 @@ class Dashboard extends Component {
         </GridContainer>
 
         <GridContainer>
-        
-        <GridItem xs={12} sm={12} md={6} >
-        <AddModal/>
-        <Fab color="secondary" aria-label="add" position="center-bottom" slot="fixed">
+          <GridItem xs={12} sm={12} md={6}>
+            <AddNoti />
+            {/* <Fab color="secondary" aria-label="add" position="center-bottom" slot="fixed">
               <AddIcon />
-           </Fab>
-           <p>Add Notification</p></GridItem>
-           <GridItem xs={12} sm={12} md={6} >
-        <Fab color="secondary" aria-label="add" position="center-bottom" slot="fixed">
-              <AddIcon />
-           </Fab>
-           <p>Tạo bảng đánh giá</p></GridItem>
+           </Fab> */}
+            <p>Add Notification</p>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={6}>
+            <Fab
+              color="secondary"
+              aria-label="add"
+              position="center-bottom"
+              slot="fixed"
+            >
+              <AddNoti />
+            </Fab>
+            <p>Tạo bảng đánh giá</p>
+          </GridItem>
           <GridItem xs={12} sm={12} md={12}>
-         
             <CustomTabs
               title="Tasks:"
               headerColor="primary"
@@ -193,9 +196,7 @@ class Dashboard extends Component {
               ]}
             />
           </GridItem>
-          <GridContainer justify='flex-end'>
-        
-            
+          <GridContainer justify="flex-end">
             {/* <Card chart>
               <CardHeader color="success">
                 <ChartistGraph
